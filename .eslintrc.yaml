@@ -1,10 +1,11 @@
 ---
 
-parser: babel-eslint
+parser: typescript-eslint-parser
 
 parserOptions:
   ecmaVersion: 8
   impliedStrict: true
+  sourceType: module
   ecmaFeatures:
     arrowFunctions: true
     blockBindings: true
@@ -109,6 +110,8 @@ rules:
     - hoist: all
   no-shadow-restricted-names: error
   no-use-before-define: error
+  no-undef: off  # Handled by Typescript
+  no-unused-vars: off  # Handled by Typescript
 
 
   # Stylistic

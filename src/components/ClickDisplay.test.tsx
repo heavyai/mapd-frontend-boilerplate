@@ -1,12 +1,12 @@
 import React from 'react'
 import * as renderer from 'react-test-renderer'
 
-import Hello from './Hello'
+import ClickDisplay from './ClickDisplay'
 
 
 test( 'Component renders', () => {
   const component = renderer.create(
-    <Hello name='world' />
+    <ClickDisplay clicks={ { total: 1 } } />
   )
 
   expect( component.toJSON() ).toMatchSnapshot()

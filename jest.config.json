@@ -1,0 +1,35 @@
+{
+  "automock": false,
+  "transform": {
+    "^.+\\.jsx?$": "babel-jest",
+    "^.+\\.tsx?$": "babel-jest"
+  },
+  "moduleFileExtensions": [
+    "js",
+    "jsx",
+    "ts",
+    "tsx"
+  ],
+  "setupFiles": [
+    "./src/__testsetup__/index.ts"
+  ],
+  "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+  "snapshotSerializers": [
+    "enzyme-to-json/serializer"
+  ],
+  "moduleNameMapper": {
+    "\\.sass$": "identity-obj-proxy",
+    "^~/(.*)$": "<rootDir>/src/$1"
+  },
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx}"
+  ],
+  "coverageDirectory": "coverage",
+  "coverageReporters": [
+    "html"
+  ],
+  "testMatch": [
+    "**/?(*.)(spec|test).js?(x)",
+    "**/?(*.)(spec|test).ts?(x)"
+  ]
+}

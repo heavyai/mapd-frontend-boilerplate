@@ -15,6 +15,7 @@ module.exports = {
 
   resolve: {
     extensions: [ '.ts', '.tsx', '.js', '.jsx' ],
+    modules: [ resolve( './src' ), 'node_modules' ],
     alias: {
       '~': resolve( __dirname, 'src/' )
     }
@@ -28,7 +29,10 @@ module.exports = {
         include: resolve( __dirname, 'src/' ),
         use: [
           {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: '.babel-cache'
+            }
           }
         ]
       }

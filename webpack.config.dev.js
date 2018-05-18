@@ -26,6 +26,56 @@ module.exports = merge( common, {
     add: ( app, middleware, options ) => {
       app.use( serveWaitPage( options, { theme: 'dark' } ) )
     }
+  },
+
+  module: {
+    rules: [
+
+      {
+        test: /\.css$/i,
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              modules: true
+            }
+          }
+        ]
+      },
+
+      {
+        test: /\.s(a|c)ss$/i,
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              modules: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
+      }
+
+    ]
   }
 
 } )

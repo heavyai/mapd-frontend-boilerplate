@@ -2,6 +2,7 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 
 import Header from '~/components/Header'
+import LineChart from '~/components/Charts/LineChart'
 import SqlEditor from '~/components/SqlEditor/SqlEditor'
 
 const styles = require( './App.sass' )
@@ -21,7 +22,7 @@ const App: React.StatelessComponent<Props> = ( { dispatch, state: { query, tabs 
   const activeTab = () => {
     switch ( tabs.activeTabIndex ) {
       case 1:
-        return <div style={ { margin: '40px auto' } }>Future home of Chart</div>
+        return <LineChart />
       case 0:
       default:
         return <SqlEditor dispatch={ dispatch } query={ query } />

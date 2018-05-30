@@ -29,19 +29,24 @@ module.exports = merge( common, {
 
       {
         test: /\.css$/i,
+        include: [
+          resolve( __dirname, 'node_modules/material-components-web' ),
+          resolve( __dirname, 'node_modules/@material' )
+        ],
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
-            options: {
-              modules: true
-            }
+            loader: 'css-loader'
           }
         ]
       },
 
       {
-        test: /\.s(a|c)ss$/i,
+        test: /(\.css|\.s(a|c)ss)$/i,
+        exclude: [
+          resolve( __dirname, 'node_modules/material-components-web' ),
+          resolve( __dirname, 'node_modules/@material' )
+        ],
         use: [
           MiniCssExtractPlugin.loader,
           {

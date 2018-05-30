@@ -5,18 +5,22 @@ import { QueryActions } from '~/actions'
 import { setStatement, sendQueryAsync } from '~/actions/query'
 
 
+export type QueryRequest = {
+  submitted: boolean,
+  pending: boolean,
+  results?: Object[],
+  error?: Error
+}
+
 export type QueryState = {
   statement: string,
-  request: {
-    pending: boolean,
-    results?: Object[],
-    error?: Error
-  }
+  request: QueryRequest
 }
 
 const initialState: QueryState = {
   statement: '',
   request: {
+    submitted: false,
     pending: false
   }
 }
@@ -32,6 +36,7 @@ export default handleActions<QueryState, QueryActions>( {
   [ getType( sendQueryAsync.request ) ]: ( state ) => ( {
     ...state,
     request: {
+      submitted: true,
       pending: true
     }
   } ),
@@ -39,6 +44,7 @@ export default handleActions<QueryState, QueryActions>( {
   [ getType( sendQueryAsync.success ) ]: ( state, action ) => ( {
     ...state,
     request: {
+      submitted: true,
       pending: false,
       results: action.payload
     }
@@ -47,6 +53,7 @@ export default handleActions<QueryState, QueryActions>( {
   [ getType( sendQueryAsync.failure ) ]: ( state, action ) => ( {
     ...state,
     request: {
+      submitted: true,
       pending: false,
       error: action.payload
     }

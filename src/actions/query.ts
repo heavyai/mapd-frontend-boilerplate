@@ -18,11 +18,12 @@ export const sendQueryAsync = createAsyncAction(
 
 export const sendQuery: ActionCreator<ThunkAction<Promise<any>, RootState, Promise<MapdConnector>, Action>> =
   ( statement: string ) =>
-    ( dispatch: Dispatcher, _, getConnector ) =>
-      getConnector.then( ( connector ) => {
-        dispatch( sendQueryAsync.request() )
+  async ( dispatch: Dispatcher, _, getConnector ) => {
+    const connector = await getConnector
 
-        return connector.queryAsync( statement )
-          .then( ( results: Object[] ) => dispatch( sendQueryAsync.success( results ) ) )
-          .catch( ( error: Error ) => dispatch( sendQueryAsync.failure( error ) ) )
-      } )
+    dispatch( sendQueryAsync.request() )
+
+    return connector.queryAsync( statement )
+      .then( ( results: Object[] ) => dispatch( sendQueryAsync.success( results ) ) )
+      .catch( ( error: Error ) => dispatch( sendQueryAsync.failure( error ) ) )
+  }

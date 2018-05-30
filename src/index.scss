@@ -1,0 +1,19 @@
+$mdc-theme-primary: #a0f;
+$mdc-theme-secondary: #a0f;
+$mdc-theme-background: #21252B;
+$mdc-theme-surface: #21252B;
+
+$mdc-typography-font-family: 'Lekton', monospace;
+
+@import 'material-components-web/material-components-web';
+
+html {
+  font-size: 18px;
+}
+
+body {
+  overscroll-behavior: none;
+  background-color: #21252B;
+  color: #eee;
+  font-family: 'Lekton', monospace;
+}

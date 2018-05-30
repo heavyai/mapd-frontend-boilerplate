@@ -21,6 +21,7 @@
     "\\.css$": "identity-obj-proxy",
     "\\.sass$": "identity-obj-proxy",
     "\\.scss$": "identity-obj-proxy",
+    "\\.svg$": "<rootDir>/src/__testsetup__/componentMock.tsx",
     "^~/(.*)$": "<rootDir>/src/$1"
   },
   "collectCoverageFrom": [

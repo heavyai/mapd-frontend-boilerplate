@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component renders 1`] = `
+<div
+  class="container  mdc-elevation--z1"
+>
+  <div />
+  <nav
+    class="tabBar  mdc-tab-bar"
+  >
+    <div
+      class=" mdc-tab"
+    >
+      SQL Editor
+    </div>
+    <div
+      class=" mdc-tab"
+    >
+      Chart
+    </div>
+    <span
+      class=" mdc-tab-bar__indicator"
+    />
+  </nav>
+</div>
+`;

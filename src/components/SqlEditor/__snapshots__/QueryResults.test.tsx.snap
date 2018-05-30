@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component renders error 1`] = `
+<div
+  class="container"
+>
+  <div
+    class="error"
+  >
+    bad
+  </div>
+</div>
+`;
+
+exports[`Component renders results 1`] = `
+<div
+  class="container"
+>
+  <table
+    class="table"
+  >
+    <thead>
+      <tr>
+        <th>
+          col
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          val
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

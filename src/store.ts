@@ -1,11 +1,19 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunkMiddleware from 'redux-thunk'
 
 import rootReducer from '~/reducers'
+import connector from '~/services/connector'
 
 
-const reduxDevtoolsExtension = ( window as any ).__REDUX_DEVTOOLS_EXTENSION__
+const composeEnhancers = ( window as any ).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const middleware = reduxDevtoolsExtension && reduxDevtoolsExtension()
+const enhancers = composeEnhancers(
+  applyMiddleware(
+    thunkMiddleware.withExtraArgument( connector )
+  )
+)
+
+const store = createStore( rootReducer, enhancers )
 
 
-export default createStore( rootReducer, middleware )
+export default store

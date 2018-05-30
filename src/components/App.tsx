@@ -2,8 +2,7 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 
 import { Dispatcher } from '~/actions'
-import ClickButton from '~/components/ClickButton'
-import ClickDisplay from '~/components/ClickDisplay'
+import QueryInput from '~/components/QueryInput'
 
 
 // Types
@@ -15,10 +14,9 @@ type Props = {
 }
 
 
-const App: React.StatelessComponent<Props> = ( { dispatch, state: { clicks } } ) =>
+const App: React.StatelessComponent<Props> = ( { dispatch, state: { query } } ) =>
   <div>
-    <ClickDisplay clicks={ clicks } />
-    <ClickButton dispatch={ dispatch } />
+    <QueryInput dispatch={ dispatch } query={ query } />
   </div>
 
 

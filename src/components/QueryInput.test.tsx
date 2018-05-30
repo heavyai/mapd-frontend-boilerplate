@@ -1,12 +1,19 @@
 import React from 'react'
 import * as renderer from 'react-test-renderer'
 
-import ClickDisplay from './ClickDisplay'
+import QueryInput from './QueryInput'
 
+
+const queryState = {
+  statement: '',
+  request: {
+    pending: false
+  }
+}
 
 test( 'Component renders', () => {
   const component = renderer.create(
-    <ClickDisplay clicks={ { total: 1 } } />
+    <QueryInput dispatch={ jest.fn() } query={ queryState } />
   )
 
   expect( component.toJSON() ).toMatchSnapshot()

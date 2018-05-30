@@ -1,11 +1,10 @@
 import { Dispatch } from 'redux'
-import { ActionsUnion } from 'typesafe-actions'
+import { ActionType } from 'typesafe-actions'
 
-import * as clicks from '~/actions/clicks'
-
-
-const actions = { clicks }
+import * as query from '~/actions/query'
 
 
-export type RootAction = ActionsUnion<typeof actions>
+export type QueryActions = ActionType<typeof query>
+
+export type RootAction = QueryActions
 export type Dispatcher = Dispatch<RootAction>

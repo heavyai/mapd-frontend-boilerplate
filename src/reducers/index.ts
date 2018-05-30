@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux'
 
 import { RootAction } from '~/actions'
-import { default as clicks, ClicksState } from '~/reducers/clicks'
+import { default as query, QueryState } from '~/reducers/query'
 
 
 export interface RootState {
-  clicks: ClicksState
+  query: QueryState
 }
 
 
 const rootReducer = combineReducers<RootState, RootAction>( {
-  clicks
+  query
 } )
 
 

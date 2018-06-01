@@ -156,7 +156,9 @@ const LineChart: React.StatelessComponent<Props> = () => {
   }
 
   return (
-    <div className={ styles.container } ref={ initializeChart } />
+    <div className={ styles.wrapper }>
+      <div className={ styles.container } ref={ initializeChart } />
+    </div>
   )
 }
 

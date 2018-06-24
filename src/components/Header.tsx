@@ -17,10 +17,16 @@ type Props = {
   tabs: TabsState
 }
 
+type TabChangeEvent = {
+  detail: {
+      activeTabIndex: number
+  }
+}
+
 
 const Header: React.StatelessComponent<Props> = ( { dispatch, tabs: { activeTabIndex } } ) => {
-  const onChangeTab = ( event: React.FormEvent<HTMLInputElement> ) =>
-    dispatch( setActiveTabIndex( Number( event.currentTarget.value ) ) )
+  const onChangeTab = ( event: TabChangeEvent ) =>
+    dispatch( setActiveTabIndex( event.detail.activeTabIndex ) )
 
   return (
     <Elevation z={ 1 } className={ styles.container }>

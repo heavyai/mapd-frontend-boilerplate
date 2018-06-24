@@ -8,23 +8,23 @@ exports[`Component renders 1`] = `
     class="container"
   >
     <div
-      class="input   mdc-text-field mdc-text-field--upgraded"
+      class="input mdc-text-field mdc-text-field--upgraded"
     >
       <input
-        class=" mdc-text-field__input"
+        class="mdc-text-field__input"
         id="text-field-test"
         spellcheck="false"
         type="text"
         value=""
       />
       <label
-        class=" mdc-floating-label"
+        class="mdc-floating-label"
         for="text-field-test"
       >
         Enter a SQL statement
       </label>
       <div
-        class=" mdc-line-ripple"
+        class="mdc-line-ripple"
       />
     </div>
   </div>

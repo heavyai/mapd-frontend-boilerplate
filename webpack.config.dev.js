@@ -10,13 +10,11 @@ const serveWaitPage = require( 'webpack-serve-waitpage' )
 
 const common = require( './webpack.config.common.js' )
 
-
 module.exports = merge( common, {
-
   mode: 'development',
 
   entry: [
-     // Activate HMR for React
+    // Activate HMR for React
     'react-hot-loader/patch',
 
     // The entry point of our app
@@ -33,7 +31,6 @@ module.exports = merge( common, {
 
   module: {
     rules: [
-
       {
         test: /\.css$/i,
         use: [
@@ -78,7 +75,7 @@ module.exports = merge( common, {
       },
 
       {
-        test: /index.scss$/i,
+        test: /index\.scss$/i,
         use: [
           {
             loader: 'style-loader',
@@ -97,9 +94,9 @@ module.exports = merge( common, {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
-              includePaths: glob.sync(
-                join( __dirname, '**/node_modules/@material' )
-              ).map( ( dir ) => dirname( dir ) )
+              includePaths: glob
+                .sync( join( __dirname, '**/node_modules/@material' ) )
+                .map( ( dir ) => dirname( dir ) )
             }
           }
         ]
@@ -119,8 +116,6 @@ module.exports = merge( common, {
           }
         ]
       }
-
     ]
   }
-
 } )

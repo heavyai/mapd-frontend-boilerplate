@@ -21,3 +21,7 @@ body {
 * {
   box-sizing: border-box
 }
+
+input {
+  box-sizing: content-box
+}

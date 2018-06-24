@@ -2,7 +2,9 @@
 
 // Configuration for production
 
-const { resolve } = require( 'path' )
+const { dirname, join, resolve } = require( 'path' )
+
+const glob = require( 'glob' )
 
 const { DefinePlugin } = require( 'webpack' )
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' )
@@ -10,9 +12,7 @@ const merge = require( 'webpack-merge' )
 
 const common = require( './webpack.config.common.js' )
 
-
 module.exports = merge( common, {
-
   mode: 'production',
 
   entry: [
@@ -26,13 +26,8 @@ module.exports = merge( common, {
 
   module: {
     rules: [
-
       {
         test: /\.css$/i,
-        include: [
-          resolve( __dirname, 'node_modules/material-components-web' ),
-          resolve( __dirname, 'node_modules/@material' )
-        ],
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -42,17 +37,12 @@ module.exports = merge( common, {
       },
 
       {
-        test: /(\.css|\.s(a|c)ss)$/i,
-        exclude: [
-          resolve( __dirname, 'node_modules/material-components-web' ),
-          resolve( __dirname, 'node_modules/@material' )
-        ],
+        test: /\.sass$/i,
         use: [
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
               modules: true
             }
           },
@@ -60,13 +50,44 @@ module.exports = merge( common, {
             loader: 'sass-loader'
           }
         ]
-      }
+      },
 
+      {
+        test: /index\.scss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: glob
+                .sync( join( __dirname, '**/node_modules/@material' ) )
+                .map( ( dir ) => dirname( dir ) )
+            }
+          }
+        ]
+      },
+
+      {
+        test: /\.svg$/i,
+        use: [
+          {
+            loader: 'babel-loader'
+          },
+          {
+            loader: 'react-svg-loader'
+          }
+        ]
+      }
     ]
   },
 
   plugins: [
-
     // Tell Webpack and React to use production mode
     new DefinePlugin( {
       'process.env': {
@@ -78,7 +99,5 @@ module.exports = merge( common, {
       filename: '[name].css',
       chunkFilename: '[id].css'
     } )
-
   ]
-
 } )

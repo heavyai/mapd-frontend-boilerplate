@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component renders as expected 1`] = `
+<div
+  class="wrapper"
+>
+  <div
+    class="container"
+  />
+</div>
+`;

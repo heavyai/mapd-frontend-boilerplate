@@ -1,14 +1,12 @@
-import { handleActions } from 'redux-actions'
-import { getType } from 'typesafe-actions'
+import { reducerWithInitialState } from 'typescript-fsa-reducers'
 
-import { QueryActions } from '~/actions'
-import { setStatement, sendQueryAsync } from '~/actions/query'
+import { setStatement, sendQuery } from '~/actions/query'
 
 
 export type QueryRequest = {
   submitted: boolean,
   pending: boolean,
-  results?: Object[],
+  result?: Object[],
   error?: Error
 }
 
@@ -17,7 +15,7 @@ export type QueryState = {
   request: QueryRequest
 }
 
-const initialState: QueryState = {
+const initial: QueryState = {
   statement: '',
   request: {
     submitted: false,
@@ -26,37 +24,38 @@ const initialState: QueryState = {
 }
 
 
-export default handleActions<QueryState, QueryActions>( {
+const reducer = reducerWithInitialState( initial )
 
-  [ getType( setStatement ) ]: ( state, action ) => ( {
+  .case( setStatement, ( state, statement ) => ( {
     ...state,
-    statement: action.payload
-  } ),
+    statement
+  } ) )
 
-  [ getType( sendQueryAsync.request ) ]: ( state ) => ( {
+  .case( sendQuery.async.started, ( state ) => ( {
     ...state,
     request: {
       submitted: true,
       pending: true
     }
-  } ),
+  } ) )
 
-  [ getType( sendQueryAsync.success ) ]: ( state, action ) => ( {
+  .case( sendQuery.async.failed, ( state, { error } ) => ( {
     ...state,
     request: {
       submitted: true,
       pending: false,
-      results: action.payload
+      error
     }
-  } ),
+  } ) )
 
-  [ getType( sendQueryAsync.failure ) ]: ( state, action ) => ( {
+  .case( sendQuery.async.done, ( state, { result } ) => ( {
     ...state,
     request: {
       submitted: true,
       pending: false,
-      error: action.payload
+      result
     }
-  } )
+  } ) )
 
-}, initialState )
+
+export default reducer

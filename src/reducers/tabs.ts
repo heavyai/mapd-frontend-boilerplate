@@ -1,7 +1,5 @@
-import { handleActions } from 'redux-actions'
-import { getType } from 'typesafe-actions'
+import { reducerWithInitialState } from 'typescript-fsa-reducers'
 
-import { RootAction } from '~/actions'
 import { setActiveTabIndex } from '~/actions/tabs'
 
 
@@ -9,16 +7,17 @@ export type TabsState = {
   activeTabIndex: number
 }
 
-const initialState: TabsState = {
+const initial: TabsState = {
   activeTabIndex: 0
 }
 
 
-export default handleActions<TabsState, RootAction>( {
+const reducer = reducerWithInitialState( initial )
 
-  [ getType( setActiveTabIndex ) ]: ( state, action ) => ( {
+  .case( setActiveTabIndex, ( state, activeTabIndex ) => ( {
     ...state,
-    activeTabIndex: action.payload
-  } )
+    activeTabIndex
+  } ) )
 
-}, initialState )
+
+export default reducer

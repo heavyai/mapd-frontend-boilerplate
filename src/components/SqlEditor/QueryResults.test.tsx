@@ -6,7 +6,7 @@ import QueryResults from './QueryResults'
 
 test( 'Component renders results', () => {
   const component = render(
-    <QueryResults request={ { submitted: true, pending: false, results: [ { col: 'val' } ] } } />
+    <QueryResults request={ { submitted: true, pending: false, result: [ { col: 'val' } ] } } />
   )
 
   expect( component ).toMatchSnapshot()

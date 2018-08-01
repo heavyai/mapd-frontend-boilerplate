@@ -9,7 +9,7 @@ const styles = require( './App.sass' )
 
 
 // Types
-import { Dispatcher } from '~/actions'
+import { Dispatcher } from '~/store'
 import { RootState } from '~/reducers'
 
 type Props = {

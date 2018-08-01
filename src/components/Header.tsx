@@ -1,6 +1,7 @@
 import React from 'react'
 import Elevation from 'rmwc/Elevation'
-import { TabBar, Tab } from 'rmwc/Tabs'
+import { TabBar, Tab, TabBarEventDetailT } from 'rmwc/Tabs'
+import { CustomEventT } from 'rmwc/Base'
 
 import Logo from '~/assets/logo.svg'
 import { setActiveTabIndex } from '~/actions/tabs'
@@ -9,7 +10,7 @@ const styles = require( './Header.sass' )
 
 
 // Types
-import { Dispatcher } from '~/actions'
+import { Dispatcher } from '~/store'
 import { TabsState } from '~/reducers/tabs'
 
 type Props = {
@@ -17,15 +18,9 @@ type Props = {
   tabs: TabsState
 }
 
-type TabChangeEvent = {
-  detail: {
-      activeTabIndex: number
-  }
-}
-
 
 const Header: React.StatelessComponent<Props> = ( { dispatch, tabs: { activeTabIndex } } ) => {
-  const onChangeTab = ( event: TabChangeEvent ) =>
+  const onChangeTab = ( event: CustomEventT<TabBarEventDetailT> ) =>
     dispatch( setActiveTabIndex( event.detail.activeTabIndex ) )
 
   return (

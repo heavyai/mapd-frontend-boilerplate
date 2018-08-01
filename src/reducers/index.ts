@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux'
 
-import { RootAction } from '~/actions'
 import { default as query, QueryState } from '~/reducers/query'
 import { default as tabs, TabsState } from '~/reducers/tabs'
 
@@ -11,7 +10,7 @@ export interface RootState {
 }
 
 
-const rootReducer = combineReducers<RootState, RootAction>( {
+const rootReducer = combineReducers<RootState>( {
   query,
   tabs
 } )

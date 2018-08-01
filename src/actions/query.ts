@@ -1,29 +1,21 @@
-import { createAsyncAction, createStandardAction } from 'typesafe-actions'
-import { Action, ActionCreator } from 'redux'
-import { ThunkAction } from 'redux-thunk'
+import actionCreatorFactory from 'typescript-fsa'
+import { asyncFactory } from 'typescript-fsa-redux-thunk'
 
-import { Dispatcher } from '~/actions'
 import { RootState } from '~/reducers'
-import { MapdConnector } from '~/services/connector'
+
+const createAction = actionCreatorFactory()
+
+const createAsyncAction = asyncFactory<RootState>( createAction )
 
 
-export const setStatement = createStandardAction( 'SET_STATEMENT' )<string>()
+export const setStatement = createAction<string>( 'SET_STATEMENT' )
 
 
-export const sendQueryAsync = createAsyncAction(
-  'SEND_QUERY_REQUEST',
-  'SEND_QUERY_SUCCESS',
-  'SEND_QUERY_FAILURE'
-)<void, Object[], Error>()
-
-export const sendQuery: ActionCreator<ThunkAction<Promise<any>, RootState, Promise<MapdConnector>, Action>> =
-  ( statement: string ) =>
-  async ( dispatch: Dispatcher, _, getConnector ) => {
+export const sendQuery = createAsyncAction<string, Object[]>(
+  'SEND_QUERY',
+  async ( statement, _dispatch, _getState, getConnector ) => {
     const connector = await getConnector
 
-    dispatch( sendQueryAsync.request() )
-
-    return connector.queryAsync( statement )
-      .then( ( results: Object[] ) => dispatch( sendQueryAsync.success( results ) ) )
-      .catch( ( error: Error ) => dispatch( sendQueryAsync.failure( error ) ) )
+    return await connector.queryAsync( statement )
   }
+)

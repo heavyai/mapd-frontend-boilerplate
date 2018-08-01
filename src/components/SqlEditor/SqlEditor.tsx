@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Dispatcher } from '~/actions'
+import { Dispatcher } from '~/store'
 import { QueryState } from '~/reducers/query'
 import QueryInput from '~/components/SqlEditor/QueryInput'
 import QueryResults from '~/components/SqlEditor/QueryResults'

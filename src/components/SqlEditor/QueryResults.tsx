@@ -33,12 +33,12 @@ const table = ( columns: string[], data: Object[] ) =>
   </table>
 
 
-const QueryResults: React.StatelessComponent<Props> = ( { request: { results, error } } ) =>
+const QueryResults: React.StatelessComponent<Props> = ( { request: { result, error } } ) =>
   <div className={ styles.container }>
     { error
       ? <div className={ styles.error }>{ error.message }</div>
-      : results && results.length
-        ? table( Object.keys( results[ 0 ] ), results )
+      : result && result.length
+        ? table( Object.keys( result[ 0 ] ), result )
         : <div className={ styles.noResults }>No results</div>
     }
   </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import { TextField } from 'rmwc/TextField'
 import LinearProgress from 'rmwc/LinearProgress'
 
-import { Dispatcher } from '~/actions'
+import { Dispatcher } from '~/store'
 import { setStatement, sendQuery } from '~/actions/query'
 
 const styles = require( './QueryInput.sass' )
@@ -21,7 +21,7 @@ const QueryInput: React.StatelessComponent<Props> = ( { dispatch, statement, pen
 
   const handleInputKeyPress = ( event: React.KeyboardEvent<HTMLInputElement> ) => {
     if ( event.key === 'Enter' ) {
-      dispatch( sendQuery( statement ) )
+      dispatch( sendQuery.action( statement ) )
     }
   }
 
@@ -30,7 +30,7 @@ const QueryInput: React.StatelessComponent<Props> = ( { dispatch, statement, pen
       <TextField
         className={ styles.input }
         label='Enter a SQL statement'
-        spellCheck='false'
+        spellCheck={ false }
         value={ statement }
         onChange={ handleInputChange }
         onKeyPress={ handleInputKeyPress }
